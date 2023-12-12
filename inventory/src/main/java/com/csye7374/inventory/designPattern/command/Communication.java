@@ -6,7 +6,7 @@ import java.util.List;
 public class Communication {
 	
 
- private List<CommandAPI> orderList = new ArrayList<CommandAPI>();
+ private List<CommandAPI> orderList = new ArrayList<>();
 	 
 	 public void takeOperation(CommandAPI op) {
 		 orderList.add(op);
