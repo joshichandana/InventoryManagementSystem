@@ -1,6 +1,7 @@
 package com.csye7374.inventory.designPattern.strategy;
 
 
+import com.csye7374.inventory.designPattern.facade.FacadeClient;
 import com.csye7374.inventory.designPattern.facade.PDFGen;
 import com.csye7374.inventory.model.Invoice;
 import com.csye7374.inventory.model.PurchaseOrder;
@@ -44,7 +45,8 @@ public class InvoiceStrategy implements StrategyAPI {
         invoice.setPaymentDate(paymentDate);
         invoice.setPurchaseOrder(po.get());
         int invoiceID = this.invoiceRepo.save(invoice).getId();
-        PDFGen.pdfGenerator(invoiceID, this.invoiceRepo);
+        FacadeClient facadeClient = new FacadeClient(new PDFGen());
+        facadeClient.generatePDF(invoiceID, this.invoiceRepo);
     }
     @Override
     public void update(int id) {
