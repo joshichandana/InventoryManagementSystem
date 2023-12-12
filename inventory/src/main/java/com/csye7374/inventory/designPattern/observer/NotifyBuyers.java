@@ -21,13 +21,13 @@ public class NotifyBuyers extends Buyer{
     public void notifyAllBuyers() {
         StringBuilder sb = new StringBuilder();
         this.buyers = this.buyerRepo.findAll();
-        Iterator var3 = this.buyers.iterator();
+        Iterator iterator = this.buyers.iterator();
 
-        while(var3.hasNext()) {
-            Buyer buyer = (Buyer)var3.next();
-            System.out.println(buyer.getOwnerName() + " notified of Product " + this.product.getProductName() + " addition");
-            sb.append("Hello " + buyer.getOwnerName()).append(", new product available : ");
-            sb.append(this.product.getProductName() + "\n");
+        while(iterator.hasNext()) {
+            Buyer buyer = (Buyer)iterator.next();
+            System.out.println("Notification sent to"+buyer.getOwnerName() + "regarding the "+this.product.getProductName() + " addition");
+            sb.append("Hello"+ buyer.getOwnerName()).append(",");
+            sb.append(this.product.getProductName() + "is available for purchase now\n");
             SendMessage.message(sb.toString());
         }
 

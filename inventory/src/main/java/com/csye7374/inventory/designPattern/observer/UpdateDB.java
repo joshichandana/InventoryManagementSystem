@@ -13,10 +13,10 @@ public class UpdateDB extends ObserverAPI{
         this.productRepo = productRepo;
         this.notify.attach(this);
     }
-
+    @Override
     public void update(Product product) {
-        if ((this.productRepo.findByProductName(product.getProductName())).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product already exists");
+        if (this.productRepo.findByProductName(product.getProductName()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product exists");
         } else {
             this.productRepo.save(product);
         }

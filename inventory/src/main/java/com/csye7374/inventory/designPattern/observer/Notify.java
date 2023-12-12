@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Notify {
-    private List<ObserverAPI> subscribers = new ArrayList();
+    private final List<ObserverAPI> subscribers = new ArrayList();
 
     public Notify() {
     }
@@ -21,10 +21,10 @@ public class Notify {
     }
 
     public void notifyAllSubscribers(Product product) {
-        Iterator var3 = this.subscribers.iterator();
+        Iterator iterator = this.subscribers.iterator();
 
-        while(var3.hasNext()) {
-            ObserverAPI observer = (ObserverAPI)var3.next();
+        while(iterator.hasNext()) {
+            ObserverAPI observer = (ObserverAPI)iterator.next();
             observer.update(product);
         }
 
