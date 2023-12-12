@@ -10,13 +10,13 @@ public class PDFGen extends Facade{
 	@Override
 	protected void udpTrigger(String msg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void pdfGen(int invoiceID, InvoiceRepository invoiceRepo) {
 		Optional<Invoice> insertedInvoice = invoiceRepo.findById(invoiceID);
-		createPDF pdf = new createPDF();
+		PDFGenerator pdf = new PDFGenerator();
 		pdf.generatePDF(insertedInvoice.get());
 	}
 

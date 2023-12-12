@@ -16,7 +16,7 @@ public class ProductPO {
 	private Product product;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "purchaseOrder_id")
+	@JoinColumn(name = "purchase_order_id")
 	@JsonBackReference
 	private PurchaseOrder purchaseOrder;
 	

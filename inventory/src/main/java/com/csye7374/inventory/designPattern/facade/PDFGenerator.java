@@ -16,30 +16,32 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class createPDF {
-	
+public class PDFGenerator {
+
 	private Invoice invoice;
-	
+
 	public void generatePDF(Invoice invoice) {
 		this.invoice = invoice;
 		Document document = new Document();
+
 		try {
 			String filename = "Invoice_" + invoice.getId() + "_" + invoice.getPurchaseOrder().getBuyer().getCompanyName() + ".pdf";
 			PdfWriter.getInstance(document, new FileOutputStream(filename));
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-
 		document.open();
+
 		Font font1 = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, BaseColor.BLACK);
 		Font font2 = FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK);
-		Paragraph p1 = new Paragraph("!nventoria Invoice for your Purchase", font1);
+		Paragraph p1 = new Paragraph("Invoice for your Purchase", font1);
+
 		Paragraph p2 = new Paragraph("Payment Date: " + invoice.getPaymentDate(), font2);
-		
+
 		PdfPTable table = new PdfPTable(4);
 		addTableHeader(table);
 		addRows(table);
@@ -49,12 +51,12 @@ public class createPDF {
 			document.add( Chunk.NEWLINE );
 			document.add(table);
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
+//			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		document.close();
 	}
-	
+
 	private void addTableHeader(PdfPTable table) {
 		Stream.of("Product", "Quantity", "Unit Price", "Total Price").forEach(columnTitle -> {
 			PdfPCell header = new PdfPCell();
@@ -66,10 +68,10 @@ public class createPDF {
 	}
 
 	private void addRows(PdfPTable table) {
-		
+
 		List<ProductPO> productPOs = invoice.getPurchaseOrder().getProducts();
 
-		List<ProductPO> distinctProductList = productPOs.stream().distinct().collect(Collectors.toList());
+		List<ProductPO> distinctProductList = productPOs.stream().distinct().toList();
 		for(ProductPO productPO : distinctProductList) {
 			table.addCell(productPO.getProduct().getProductName());
 			table.addCell(String.valueOf(productPO.getQuantity()));
@@ -77,7 +79,7 @@ public class createPDF {
 			double result = productPO.getProduct().getPrice() * productPO.getQuantity();
 			table.addCell("$" + result);
 		}
-		
+
 		table.addCell("Total");
 		table.addCell("---");
 		table.addCell("---");

@@ -54,7 +54,6 @@ public class OrderStrategy implements StrategyAPI {
         while(var4.hasNext()) {
             ProductPO proPO = (ProductPO)var4.next();
             State s = new State();
-            this.productPORepo.save(proPO);
             com.csye7374.inventory.model.Product product = proPO.getProduct();
             cart = new InventoryCartAPI((InventoryCartAPI) cart, product, proPO) {
                 @Override
@@ -71,9 +70,6 @@ public class OrderStrategy implements StrategyAPI {
                 stock.action(s, difference);
             }
         }
-
-        this.insertedPO.setTotalAmount(((InventoryCartAPI)cart).getCost());
-        this.orderRepo.save(this.insertedPO);
     }
 
     @Override
