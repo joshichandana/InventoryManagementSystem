@@ -36,6 +36,9 @@ public class InvoiceStrategy implements StrategyAPI {
     @Override
     public void add() {
         Optional<PurchaseOrder> po = this.orderRepo.findById(this.id);
+        if (po.isEmpty()) {
+            throw new RuntimeException("Purchase order does not exist");
+        }
         po.get().setPaid(true);
         this.orderRepo.save(po.get());
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");

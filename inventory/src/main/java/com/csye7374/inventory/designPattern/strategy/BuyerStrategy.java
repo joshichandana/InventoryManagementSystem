@@ -47,6 +47,9 @@ public class BuyerStrategy implements StrategyAPI {
     @Override
     public void delete() {
         Optional<Buyer> buyer = this.buyerRepo.findById(this.id);
+        if (buyer.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Buyer does not exist");
+        }
         this.buyerRepo.delete(buyer.get());
     }
 }

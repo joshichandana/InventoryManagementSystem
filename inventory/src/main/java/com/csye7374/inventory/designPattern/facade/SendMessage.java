@@ -7,7 +7,6 @@ public class SendMessage extends Facade{
 
 	@Override
 	protected void udpTrigger(String msg) {
-		// TODO Auto-generated method stub
 		new CommunicationInstanceFactory().getObject().triggerServerClient(msg);
 	}
 	
@@ -20,8 +19,6 @@ public class SendMessage extends Facade{
 
 	@Override
 	protected void pdfGen(int id, InvoiceRepository invoiceRepo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

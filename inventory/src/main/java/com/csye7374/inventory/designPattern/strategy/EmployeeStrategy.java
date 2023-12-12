@@ -39,16 +39,19 @@ public class EmployeeStrategy implements StrategyAPI {
         emp.get().setDesignation(this.employee.getDesignation());
         emp.get().setDob(this.employee.getDob());
         emp.get().setFullName(this.employee.getFullName());
-//        emp.setPassword(this.employee.getPassword());
+        emp.get().setPassword(this.employee.getPassword());
         emp.get().setRating(this.employee.getRating());
         emp.get().setSalary(this.employee.getSalary());
-//        emp.setUsername(this.employee.getUsername());
+        emp.get().setUsername(this.employee.getUsername());
 
         this.employeeRepo.save(emp.get());
     }
     @Override
     public void delete() {
         Optional<Employee> emp = this.employeeRepo.findById(this.id);
+        if (emp.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Employee does not exist");
+        }
         this.employeeRepo.delete(emp.get());
     }
 }
