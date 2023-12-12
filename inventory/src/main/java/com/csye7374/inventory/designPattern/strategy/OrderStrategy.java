@@ -69,11 +69,12 @@ public class OrderStrategy implements StrategyAPI {
             if (difference <= 100) {
                 state = new StockAlert(product, this.productRepo);
                 count = difference;
+                state.alertStock(count);
             } else {
                 state = new StockUpdate(product, this.productRepo);
                 count = proPO.getQuantity()/2;
+                state.increaseStock(count);
             }
-            state.action(count);
         }
     }
 

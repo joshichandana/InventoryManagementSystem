@@ -12,9 +12,15 @@ public class StockUpdate implements StateAPI {
         this.productRepo = productRepo;
     }
 
-    public void action(int stock) {
+    @Override
+    public void increaseStock(int stock) {
         this.product.setQuantity(product.getQuantity() + stock);
         this.productRepo.save(this.product);
+    }
+
+    @Override
+    public void alertStock(int stock) {
+        System.out.println("Err! Update state, cannot alert stock ");
     }
 }
 

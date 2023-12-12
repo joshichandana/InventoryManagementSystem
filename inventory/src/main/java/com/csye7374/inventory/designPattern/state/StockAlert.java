@@ -13,10 +13,14 @@ public class StockAlert implements StateAPI {
         this.productRepo = productRepo;
     }
 
-    public void action(int stock) {
+    @Override
+    public void increaseStock(int stock) {
+        System.out.println("Err! Alert state, cannot increase stock ");
+    }
+
+    @Override
+    public void alertStock(int stock) {
         SendMessage.message("\n******\nLOW STOCK for " + this.product.getProductName() + "\n*****\n");
-        this.product.setQuantity(stock);
-//        this.productRepo.update(this.product);
     }
 }
 

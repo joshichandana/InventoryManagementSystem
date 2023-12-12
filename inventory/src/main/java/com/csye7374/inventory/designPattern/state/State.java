@@ -5,9 +5,14 @@ public class State implements StateAPI {
     public State() {
     }
 
+
     @Override
-    public void action(int stock) {
-        System.out.println("Initial State");
+    public void increaseStock(int stock) {
+        System.out.println("Err! Default state, cannot increase stock ");
     }
 
+    @Override
+    public void alertStock(int stock) {
+        System.out.println("Err! Default state, cannot alert stock ");
+    }
 }
