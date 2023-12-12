@@ -13,7 +13,7 @@ public class StockUpdate implements StateAPI {
     }
 
     public void action(int stock) {
-        this.product.setQuantity(stock);
+        this.product.setQuantity(product.getQuantity() - stock);
         this.productRepo.save(this.product);
     }
 }
