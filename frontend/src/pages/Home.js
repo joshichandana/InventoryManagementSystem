@@ -6,14 +6,20 @@ import {
   faCoffee,
   faFileInvoiceDollar,
   faFileAlt,
+  faFileDownload,
   faShoppingBasket,
   faUserTie,
-  faDollarSign,
+  faAddressCard,
+  faEuroSign,
+  faWeight,
   faBalanceScale,
   faWeightHanging,
   faBox,
   faPeopleCarry,
+  faMoneyBill,
+  faBookmark
 } from "@fortawesome/free-solid-svg-icons";
+
 import bg from "../assets/back.jpg";
 
 var sectionStyle = {
@@ -26,19 +32,14 @@ const DATA = [
     id: 1,
     title: "Purchase Orders",
     count: 10,
-    icon: faFileInvoiceDollar,
-  },
-  {
-    id: 2,
-    title: "Invoices",
-    count: 8,
-    icon: faFileAlt,
+    icon: faMoneyBill,
+    
   },
   {
     id: 3,
     title: "Products",
     count: 5,
-    icon: faBox,
+    icon: faAddressCard,
   },
   {
     id: 4,
@@ -47,28 +48,16 @@ const DATA = [
     icon: faPeopleCarry,
   },
   {
-    id: 5,
-    title: "Employees",
-    count: 3,
-    icon: faUserTie,
-  },
-  {
     id: 6,
     title: "Total Amount",
     count: 190000,
-    icon: faDollarSign,
+    icon: faEuroSign,
   },
   {
     id: 7,
-    title: "Total Quantity",
-    count: 504,
-    icon: faBalanceScale,
-  },
-  {
-    id: 8,
     title: "Total Orders",
     count: 40,
-    icon: faWeightHanging,
+    icon: faBookmark,
   },
 ];
 
@@ -90,7 +79,7 @@ function Home() {
 
             return (
               <Col md={4} className="dashboard-cards">
-                <div className={`card-counter ${color}`}>
+                <div className={`card-counter ${color}`} style={{borderRadius:'75%'}}>
                   <FontAwesomeIcon icon={item.icon} className="card--icon" />
                   <span className="count-numbers">{item.count}</span>
                   <span className="count-name">{item.title}</span>

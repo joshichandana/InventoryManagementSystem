@@ -103,10 +103,12 @@ function Login() {
   };
 
   return (
-    <div className="login-bg">
+    <div className="login-bg" >
       <Row className="login--row">
         <Col md={{ span: 8, offset: 2 }}>
-          <h1 style={{ color: '#fff8dc', fontweight:'bold' }}>Inventory Management System</h1>
+          <div style={{textAlign:'center'}}>
+          <h1 style={{ color: 'black', fontweight:'bold' }}>Inventory Management System</h1>
+          </div>
           <br />
           <Form onSubmit={submitForm}>
             <Form.Group className="mb-3" controlId="formBasicUserName">
