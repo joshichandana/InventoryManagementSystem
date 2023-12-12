@@ -130,7 +130,7 @@ function AddBuyer() {
       validateInputField({ field: zipcode, fieldName: "zipcode" })
     ) {
       const body = { ownerName, companyName, zipcode };
-      const url = isUpdate ? URLS.EDIT_BUYER : URLS.ADD_BUYER;
+      const url = isUpdate ? `${URLS.EDIT_BUYER}/${buyerId}` : URLS.ADD_BUYER;
 
       if (isUpdate) {
         body.id = id;
@@ -172,7 +172,7 @@ function AddBuyer() {
       <Container fluid="lg">
         <Row className="container-main">
           <Col>
-            <h3 className="center-align">
+            <h3 className="center-align" style={{color:'teal'}}>
               {isUpdate ? "Update" : "Add"} Buyer
             </h3>
           </Col>

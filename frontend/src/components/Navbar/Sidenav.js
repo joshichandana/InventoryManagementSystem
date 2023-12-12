@@ -22,11 +22,16 @@ import {
   faChartPie,
   faCartPlus,
   faCarAlt,
+  faCubes,
+  faUserFriends,
+  faAddressBook,
+  faShoppingCart,
   faBoxOpen,
   faPeopleCarry,
   faFileInvoice,
   faMoneyBill,
   faBullseye,
+  faCube,
 } from "@fortawesome/free-solid-svg-icons";
 import displayToast from "../../utils/displayToast";
 import { Button, Navbar, Container } from "react-bootstrap";
@@ -97,7 +102,7 @@ function Sidenav() {
                     </NavItem> */}
             <NavItem eventKey="manage-products">
               <NavIcon>
-                <FontAwesomeIcon icon={faBoxOpen} className="side-nav-icons" />
+                <FontAwesomeIcon icon={faCubes} className="side-nav-icons" />
                 {/* <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} /> */}
               </NavIcon>
               <NavText>Add Products</NavText>
@@ -119,7 +124,7 @@ function Sidenav() {
             <NavItem eventKey="manage-buyers">
               <NavIcon>
                 <FontAwesomeIcon
-                  icon={faPeopleCarry}
+                  icon={faUserFriends}
                   className="side-nav-icons"
                 />
                 {/* <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} /> */}
@@ -130,7 +135,7 @@ function Sidenav() {
             <NavItem eventKey="manage-purchase-order">
               <NavIcon>
                 <FontAwesomeIcon
-                  icon={faFileInvoice}
+                  icon={faShoppingCart}
                   className="side-nav-icons"
                 />
                 {/* <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} /> */}
@@ -140,7 +145,7 @@ function Sidenav() {
 
             <NavItem eventKey="manage-invoice">
               <NavIcon>
-                <FontAwesomeIcon icon={faBullseye} className="side-nav-icons" />
+                <FontAwesomeIcon icon={faFileInvoiceDollar} className="side-nav-icons" />
                 {/* <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} /> */}
               </NavIcon>
               <NavText>View Invoice</NavText>

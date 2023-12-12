@@ -223,6 +223,7 @@ function AddPurchaseOrder() {
     if (!isSubmitted) {
       isSubmitted = true;
       setIsLoading(true);
+      let totalCost = 0;
 
       if (
         validateInputField({ field: buyerId, fieldName: "buyer name" }) &&
@@ -247,6 +248,7 @@ function AddPurchaseOrder() {
             const buyer = buyers.find((b) => b.id == state.buyerId);
 
             const userProducts = selectedProducts.map((item) => {
+              totalCost += item.selectedQuantity ? item.selectedQuantity * item.price : 0;
               return {
                 product: item,
                 quantity: parseInt(item.selectedQuantity),
@@ -257,7 +259,7 @@ function AddPurchaseOrder() {
               buyer,
               paymentDueDate: date,
               products: userProducts,
-              totalAmount: 0.0,
+              totalAmount: totalCost,
               paid: false,
             };
 
