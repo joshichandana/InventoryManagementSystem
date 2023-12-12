@@ -60,8 +60,12 @@ public class OrderStrategy implements StrategyAPI {
                     return 0;
                 }
             };
+            product.setQuantity(product.getQuantity() - proPO.getQuantity());
+            productRepo.save(product);
+
             int difference = product.getQuantity() - proPO.getQuantity();
-            int count =0;
+            int count;
+
             if (difference <= 100) {
                 state = new StockAlert(product, this.productRepo);
                 count = difference;
