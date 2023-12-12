@@ -1,16 +1,13 @@
 package com.csye7374.inventory.designPattern.state;
 
-public class State {
-    private StateAPI state = null;
+public class State implements StateAPI {
 
     public State() {
     }
 
-    public StateAPI getState() {
-        return this.state;
+    @Override
+    public void action(int stock) {
+        System.out.println("Initial State");
     }
 
-    public void setState(StateAPI state) {
-        this.state = state;
-    }
 }

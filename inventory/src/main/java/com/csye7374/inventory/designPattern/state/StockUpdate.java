@@ -3,7 +3,7 @@ package com.csye7374.inventory.designPattern.state;
 import com.csye7374.inventory.model.Product;
 import com.csye7374.inventory.repository.ProductRepository;
 
-public class StockUpdate extends StateAPI {
+public class StockUpdate implements StateAPI {
     Product product;
     ProductRepository productRepo;
 
@@ -12,9 +12,9 @@ public class StockUpdate extends StateAPI {
         this.productRepo = productRepo;
     }
 
-    public void action(State state, int stock) {
+    public void action(int stock) {
         this.product.setQuantity(stock);
-//        this.productRepo.update(this.product);
+        this.productRepo.save(this.product);
     }
 }
 

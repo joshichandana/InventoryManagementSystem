@@ -1,5 +1,6 @@
 package com.csye7374.inventory.designPattern.observer;
 
+import com.csye7374.inventory.designPattern.facade.FacadeClient;
 import com.csye7374.inventory.designPattern.facade.SendMessage;
 import com.csye7374.inventory.model.Buyer;
 import com.csye7374.inventory.model.Product;
@@ -28,7 +29,8 @@ public class NotifyBuyers extends Buyer{
             System.out.println("Notification sent to"+buyer.getOwnerName() + "regarding the "+this.product.getProductName() + " addition");
             sb.append("Hello"+ buyer.getOwnerName()).append(",");
             sb.append(this.product.getProductName() + "is available for purchase now\n");
-            SendMessage.message(sb.toString());
+            FacadeClient facadeClient = new FacadeClient(new SendMessage());
+            facadeClient.sendMessage(sb.toString());
         }
 
     }
