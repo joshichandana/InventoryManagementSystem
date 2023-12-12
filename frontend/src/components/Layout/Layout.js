@@ -21,3 +21,4 @@ function Layout({ children }) {
 
 export default Layout;
 
+//C:\Users\akank\OneDrive\Documents\IMS\InventoryManagementSystem\frontend\src\routes\styles\index.scss
