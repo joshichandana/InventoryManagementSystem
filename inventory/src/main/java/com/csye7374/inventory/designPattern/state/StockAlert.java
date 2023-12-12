@@ -4,7 +4,7 @@ import com.csye7374.inventory.designPattern.facade.SendMessage;
 import com.csye7374.inventory.model.Product;
 import com.csye7374.inventory.repository.ProductRepository;
 
-public class StockAlert extends StateAPI {
+public class StockAlert implements StateAPI {
     Product product;
     ProductRepository productRepo;
 
@@ -13,7 +13,7 @@ public class StockAlert extends StateAPI {
         this.productRepo = productRepo;
     }
 
-    public void action(State state, int stock) {
+    public void action(int stock) {
         SendMessage.message("\n******\nLOW STOCK for " + this.product.getProductName() + "\n*****\n");
         this.product.setQuantity(stock);
 //        this.productRepo.update(this.product);

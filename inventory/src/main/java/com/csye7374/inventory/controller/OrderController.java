@@ -51,7 +51,7 @@ public class OrderController {
 	public void save(@RequestBody PurchaseOrder purchaseOrder) {
 		PurchaseOrder insertedPO = orderRepo.save(purchaseOrder);
 		InventoryStrategy strategy = new InventoryStrategy(new OrderStrategy
-				(orderRepo, productPORepo, productRepo, insertedPO ,purchaseOrder));
+				(orderRepo, productRepo, insertedPO ,purchaseOrder));
 		strategy.executeAdd();
 	}
 }

@@ -2,6 +2,7 @@ package com.csye7374.inventory.designPattern.strategy;
 
 import com.csye7374.inventory.InventoryCartAPI;
 import com.csye7374.inventory.designPattern.state.State;
+import com.csye7374.inventory.designPattern.state.StateAPI;
 import com.csye7374.inventory.designPattern.state.StockAlert;
 import com.csye7374.inventory.designPattern.state.StockUpdate;
 import com.csye7374.inventory.model.ProductPO;
@@ -15,16 +16,14 @@ import java.util.List;
 import java.util.Optional;
 
 public class OrderStrategy implements StrategyAPI {
-    private OrderRepository orderRepo;
-    private ProductPORepository productPORepo;
+    private final OrderRepository orderRepo;
     private ProductRepository productRepo;
     private int id;
     private PurchaseOrder purchaseOrder;
     private PurchaseOrder insertedPO;
 
-    public OrderStrategy(OrderRepository orderRepo, ProductPORepository productPORepo, ProductRepository productRepo, PurchaseOrder insertedPO, PurchaseOrder purchaseOrder) {
+    public OrderStrategy(OrderRepository orderRepo, ProductRepository productRepo, PurchaseOrder insertedPO, PurchaseOrder purchaseOrder) {
         this.orderRepo = orderRepo;
-        this.productPORepo = productPORepo;
         this.productRepo = productRepo;
         this.purchaseOrder = purchaseOrder;
         this.insertedPO = insertedPO;
@@ -53,8 +52,7 @@ public class OrderStrategy implements StrategyAPI {
 
         while(var4.hasNext()) {
             ProductPO proPO = (ProductPO)var4.next();
-            State s = new State();
-            this.productPORepo.save(proPO);
+            StateAPI state;
             com.csye7374.inventory.model.Product product = proPO.getProduct();
             cart = new InventoryCartAPI((InventoryCartAPI) cart, product, proPO) {
                 @Override
@@ -63,17 +61,16 @@ public class OrderStrategy implements StrategyAPI {
                 }
             };
             int difference = product.getQuantity() - proPO.getQuantity();
+            int count =0;
             if (difference <= 100) {
-                StockAlert low = new StockAlert(product, this.productRepo);
-                low.action(s, difference);
+                state = new StockAlert(product, this.productRepo);
+                count = difference;
             } else {
-                StockUpdate stock = new StockUpdate(product, this.productRepo);
-                stock.action(s, difference);
+                state = new StockUpdate(product, this.productRepo);
+                count = proPO.getQuantity()*2;
             }
+            state.action(count);
         }
-
-        this.insertedPO.setTotalAmount(((InventoryCartAPI)cart).getCost());
-        this.orderRepo.save(this.insertedPO);
     }
 
     @Override
