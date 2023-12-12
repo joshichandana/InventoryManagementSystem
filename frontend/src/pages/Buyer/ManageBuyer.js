@@ -75,7 +75,7 @@ function ManageBuyer() {
           </Link>
         </Col>
         <Col>
-          <h3 style={{ color: '#deb887', fontweight:'bold' }}>Buyer</h3>
+          <h3 style={{ color: 'teal', fontweight:'bold'  }}>Buyer</h3>
         </Col>
       </Row>
       <Row>
@@ -83,7 +83,7 @@ function ManageBuyer() {
           <div id="customers">
             <thead>
               <tr>
-                <th>Sr. No.</th>
+                <th>No: </th>
                 <th>Owner Name</th>
                 <th>Company Name</th>
                 <th>Zipcode</th>

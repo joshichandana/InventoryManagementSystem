@@ -172,7 +172,7 @@ function AddBuyer() {
       <Container fluid="lg">
         <Row className="container-main">
           <Col>
-            <h3 className="center-align">
+            <h3 className="center-align" style={{color:'teal'}}>
               {isUpdate ? "Update" : "Add"} Buyer
             </h3>
           </Col>
