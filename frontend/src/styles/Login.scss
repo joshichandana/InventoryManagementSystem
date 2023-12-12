@@ -2,14 +2,15 @@
   width: 100%;
   height: 100vh;
   background-color: #cae0ff;
-  background-image: url(../assets/Inventory.jpg);
+  background-image: url(../assets/login.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
+  text-align: center;
 
   .login--row {
-    width: 25%;
+    // width: 25%;
     padding-top: 10%;
     padding-bottom: 5%;
-    border-radius: 10px;
+    // border-radius: 10px;
   }
 }
