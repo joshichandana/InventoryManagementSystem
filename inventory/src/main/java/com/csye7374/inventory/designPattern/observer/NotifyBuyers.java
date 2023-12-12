@@ -27,7 +27,7 @@ public class NotifyBuyers extends Buyer{
         while(iterator.hasNext()) {
             Buyer buyer = (Buyer)iterator.next();
             System.out.println("Notification sent to"+buyer.getOwnerName() + "regarding the "+this.product.getProductName() + " addition");
-            sb.append("Hello"+ buyer.getOwnerName()).append(",");
+            sb.append("Hello "+ buyer.getOwnerName()).append(", ");
             sb.append(this.product.getProductName() + "is available for purchase now\n");
             FacadeClient facadeClient = new FacadeClient(new SendMessage());
             facadeClient.sendMessage(sb.toString());
